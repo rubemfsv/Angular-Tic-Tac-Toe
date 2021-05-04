@@ -95,4 +95,22 @@ export class TicTacToeComponent implements OnInit {
   showVictory(posX: number, posY: number): boolean {
     return this.ticTacToeService.showVictory(posX, posY);
   }
+
+  /**
+   * Returns the number of the player to play
+   *
+   * @return number
+   */
+  get player(): number {
+    return this.ticTacToeService.player;
+  }
+
+  /**
+   * Starts a new game, as shows the board
+   *
+   * @return void
+   */
+  newGame(): void {
+    this.ticTacToeService.newGame();
+  }
 }

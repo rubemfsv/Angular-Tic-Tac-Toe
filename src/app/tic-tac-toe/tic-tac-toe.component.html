@@ -91,11 +91,11 @@
   <!-- tela final -->
   <div *ngIf="showEnd">
     <span>
-      <p>You won!!!</p>
-      <p>You lost...</p>
-      <p>The game ended in a draw...</p>
+      <p *ngIf="player === 2">You won!!!</p>
+      <p *ngIf="player === 1">You lost...</p>
+      <p *ngIf="player === 0">The game ended in a draw...</p>
       <br />
-      <a href="#" class="botao"> Play again </a>
+      <a href="#" class="botao" (click)="newGame()"> Play again </a>
     </span>
   </div>
   <!-- fim tela final -->

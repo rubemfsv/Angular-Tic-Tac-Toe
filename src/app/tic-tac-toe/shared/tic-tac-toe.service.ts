@@ -15,8 +15,8 @@ export class TicTacToeService {
 
   private _player: number;
   private _showStart: boolean;
-  private _showEnd: boolean;
   private _showBoard: boolean;
+  private _showEnd: boolean;
 
   constructor() {}
 
@@ -27,10 +27,10 @@ export class TicTacToeService {
    */
   start(): void {
     this._showStart = true;
-    this._showEnd = false;
     this._showBoard = false;
-    this._player = this.X;
+    this._showEnd = false;
     this.numberOfMoves = 0;
+    this._player = this.X;
     this.victory = false;
     this.startBoard();
   }
@@ -57,21 +57,21 @@ export class TicTacToeService {
   }
 
   /**
-   * Returns if the end screen should be showed.
-   *
-   * @return boolean
-   */
-  get showEnd(): boolean {
-    return this._showEnd;
-  }
-
-  /**
    * Returns if the board should be showed.
    *
    * @return boolean
    */
   get showBoard(): boolean {
     return this._showBoard;
+  }
+
+  /**
+   * Returns if the end screen should be showed.
+   *
+   * @return boolean
+   */
+  get showEnd(): boolean {
+    return this._showEnd;
   }
 
   /**
@@ -100,7 +100,7 @@ export class TicTacToeService {
    * @param number posY
    * @return void
    */
-  jogar(posX: number, posY: number): void {
+  play(posX: number, posY: number): void {
     // invalid movement
     if (this.board[posX][posY] !== this.EMPTY || this.victory) {
       return;
@@ -120,8 +120,8 @@ export class TicTacToeService {
       this._showEnd = true;
     }
 
-    // raw
-    if (!this.victory && this.numberOfMoves) {
+    // draw
+    if (!this.victory && this.numberOfMoves === 9) {
       this._player = 0;
       this._showEnd = true;
     }
@@ -210,14 +210,14 @@ export class TicTacToeService {
       // random movement
       let movements: any = [];
       for (let i = 0; i < this.BOARD_SIZE; i++) {
-        for (let j = 0; i < this.BOARD_SIZE; j++) {
+        for (let j = 0; j < this.BOARD_SIZE; j++) {
           if (this.board[i][j] === this.EMPTY) {
             movements.push([i, j]);
           }
         }
       }
       let k = Math.floor(Math.random() * (movements.length - 1));
-      movement = [movements[k][0], movement[k][1]];
+      movement = [movements[k][0], movements[k][1]];
     }
 
     this.board[movement[0]][movement[1]] = this._player;
